@@ -59,6 +59,7 @@
 
   <label for="webUserEmail">Enter Email Address:</label><br>
   <input type="email" id="webUserEmail" placeholder="Enter email" size="30">
+  <button onclick="toggleMessenger()" class="w3-button w3-padding-large w3-round-large w3-blue w3-hover-light-blue" style="margin-top:20px;">Chat With Us!</button>
 
   <br>
 
@@ -123,6 +124,15 @@
         }
       }
     });
+  }
+
+   function toggleMessenger() {
+    Genesys("command", "Messenger.open", {},
+      function(o) { /* fulfilled callback */ },
+      function(o) { // if rejected
+        Genesys("command", "Messenger.close");
+      }
+    );
   }
 
   window.onload = initializeGenesys;
